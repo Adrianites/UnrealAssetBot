@@ -33,7 +33,7 @@ def get_unreal_engine_assets():
     return asset_info_list
 
 # Function to load channel ID from file
-def load_channel_id(guild_id):
+def load_channel_id(guild_id): 
     try:
         with open('channel_ids.json', 'r') as file:
             data = json.load(file)
@@ -137,5 +137,5 @@ async def remove_channel(ctx):
         await ctx.send('Channel is not set. To set it, use `!set_channel` first.')
 
 # Run the bot
-bot.run('MTE5MzU5MDc2MzI5Mjk4MzQxOA.GEYm7_.uFuf_i5pkvNMk_HjVHDm7wgrRCE7IgvuTsXOKE')
-
+bot.run('Bot_Token')
+# Do not Share your bot token with anyone else.
