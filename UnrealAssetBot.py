@@ -137,5 +137,5 @@ async def remove_channel(ctx):
         await ctx.send('Channel is not set. To set it, use `!set_channel` first.')
 
 # Run the bot
-bot.run('MTE5MzU5MDc2MzI5Mjk4MzQxOA.GEYm7_.uFuf_i5pkvNMk_HjVHDm7wgrRCE7IgvuTsXOKE')
-
+bot.run('BOT_TOKEN')
+# Bot Tokens are like passwords - dont share them
