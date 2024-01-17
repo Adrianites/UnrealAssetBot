@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+from discord_slash import SlashCommand, SlashContext # Currently not working
 import requests
 from bs4 import BeautifulSoup
 import json
@@ -7,11 +8,13 @@ from datetime import datetime
 
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix='!', intents=intents)
+bot.remove_command('help')  # Removing the default help command
+slash = SlashCommand(bot, sync_commands=True)  # Instantiate SlashCommand correctly
 
-# Dictionary to store channel IDs for each guild
+# Dictionary to store channel IDs for each server
 channel_ids = {}
 
-# Function to get Unreal Engine assets
+# Function to get Unreal Engine assets with names, images, prices, and links
 def get_unreal_engine_assets():
     url = 'https://www.unrealengine.com/marketplace/en-US/assets?tag=4910'
     response = requests.get(url)
@@ -23,14 +26,37 @@ def get_unreal_engine_assets():
     for element in asset_info_elements:
         asset_name = element.find('h3').text.strip()
 
-        category_element = element.find('p', class_='category')
-        asset_category = category_element.text.strip() if category_element else 'No category available'
+        # Get the asset original price
+        original_price_element = element.find('span', class_='asset-price asset-discount-price-wrapper')
+        asset_original_price = original_price_element.text.strip() if original_price_element else 'Original price not available'
 
-        asset_link = url
-        embed = discord.Embed(title=asset_name, description=f'Category: {asset_category}\n[Link to Asset]({asset_link})', color=discord.Color.green())
-        asset_info_list.append(embed)
+        # Get the asset discounted price
+        discounted_price_element = element.find('span', class_='asset-discount-note')
+        asset_discounted_price = discounted_price_element.text.strip() if discounted_price_element else None
+
+        # Combine both prices for display
+        asset_price = f'Price: {asset_original_price}'
+        if asset_discounted_price:
+            asset_price += f'\nDiscount: {asset_discounted_price}'
+
+        # Get the asset image URL
+        image_element = element.find('img', class_='image-box')
+        asset_image_url = image_element['src'] if image_element else 'No image available'
+
+        # Get the asset link
+        asset_link_element = element.find('a', class_='asset')
+        asset_link = f"https://www.unrealengine.com{asset_link_element['href']}" if asset_link_element else 'No link available'
+
+        embed = discord.Embed(
+            title=asset_name,
+            description=f'Price: {asset_price}\n[Link to Asset]({asset_link})',
+            color=discord.Color.green()
+        )
+        embed.set_image(url=asset_image_url)
+        asset_info_list.append((asset_name, asset_image_url, asset_price, asset_link, embed))
 
     return asset_info_list
+
 
 # Function to load channel ID from file
 def load_channel_id(guild_id): 
@@ -79,6 +105,14 @@ async def on_ready():
     for guild in bot.guilds:
         print(f'- {guild.name} (ID: {guild.id})')
 
+# Event: Bot is ready
+@bot.event
+async def on_ready():
+    print(f'Logged in as {bot.user.name}')
+    print('Connected to the following servers:')
+    for guild in bot.guilds:
+        print(f'- {guild.name} (ID: {guild.id})')
+
 # Event: Bot joins a new server
 @bot.event
 async def on_guild_join(guild):
@@ -86,9 +120,12 @@ async def on_guild_join(guild):
     await guild.owner.send(f'Thanks for adding me to your server, {guild.name}! To set up automatic updates, use the `!set_channel` command in the channel where you want the updates. If you want to remove the automatic updates then use the `!remove_channel` command in the channel. If you want to test if the automatic update is working then use the `!test_update` command. Side note: Only people with *Administrator Privileges* can use the commands.')
 
 # Command: Test Update
-@bot.command(name='test_update')
+@slash.slash(name='test_update', description='Trigger a test update to see the latest Unreal Engine assets.')
 @is_admin()  # Use the custom decorator
-async def test_update(ctx):
+async def test_update(ctx: SlashContext):
+    await update_assets(ctx)
+
+async def update_assets(ctx: commands.Context):
     print("Update Triggered!")
 
     asset_info_list = get_unreal_engine_assets()
@@ -99,23 +136,24 @@ async def test_update(ctx):
     # Check if the channel is set for the current guild
     channel_id = load_channel_id(ctx.guild.id)
     if channel_id is None:
-        await ctx.send('Channel not set. Please use `!set_channel` to set the channel for automatic updates.')
+        await ctx.send('Channel not set. Please use `/set_channel` to set the channel for automatic updates.')
         return
 
-    channel = bot.get_channel(channel_id)
+    channel = await bot.get_channel(channel_id)
     if channel:
         # Send a single message with the combined information
         combined_message = f'As of {current_date}, the free assets are:\n\n'
-        for embed in asset_info_list:
-            combined_message += f'{embed.title}\n{embed.description}\n\n'
+        for asset_name, asset_image_url, asset_price, asset_link, embed in asset_info_list:
+            combined_message += f'{asset_name}\n{asset_price}\n[Link to Asset]({asset_link})\n\n'
 
         await channel.send(combined_message)
         print('Message sent successfully!')
+        await ctx.send('Test update sent successfully!')
     else:
-        await ctx.send('Channel not found. Please set the channel using `!set_channel` command.')
+        await ctx.send('Channel not found. Please set the channel using `/set_channel` command.')
 
 # Command: Set Channel
-@bot.command(name='set_channel')
+@bot.command(name='set_channel', help='Set the channel for automatic updates.')
 @is_admin()  # Use the custom decorator
 async def set_channel(ctx):
     current_channel_id = load_channel_id(ctx.guild.id)
@@ -126,7 +164,7 @@ async def set_channel(ctx):
         await ctx.send('Channel is already set. To change it, use `!remove_channel` first.')
 
 # Command: Remove Channel
-@bot.command(name='remove_channel')
+@bot.command(name='remove_channel', help='Remove the set channel for automatic updates.')
 @is_admin()  # Use the custom decorator
 async def remove_channel(ctx):
     current_channel_id = load_channel_id(ctx.guild.id)
@@ -137,5 +175,5 @@ async def remove_channel(ctx):
         await ctx.send('Channel is not set. To set it, use `!set_channel` first.')
 
 # Run the bot
-bot.run('BOT_TOKEN')
+bot.run('bot_token')
 # Do not share your bot token with anyone else.
