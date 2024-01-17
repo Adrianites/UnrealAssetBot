@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-from discord_slash import SlashCommand, SlashContext # Currently not working
+from discord_slash import SlashCommand, SlashContext # Currently not working // Maybe try using `Import Interactions` instead of `Discord_slahs`
 import requests
 from bs4 import BeautifulSoup
 import json
