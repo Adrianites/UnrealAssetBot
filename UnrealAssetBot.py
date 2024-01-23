@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-from discord_slash import SlashCommand, SlashContext # Currently not working // Maybe try using `Import Interactions` instead of `Discord_slahs`
+from interactions import SlashCommand, SlashContext
 import requests
 from bs4 import BeautifulSoup
 import json
@@ -47,6 +47,7 @@ def get_unreal_engine_assets():
         asset_link_element = element.find('a', class_='asset')
         asset_link = f"https://www.unrealengine.com{asset_link_element['href']}" if asset_link_element else 'No link available'
 
+        # Combine all of the information into one message
         embed = discord.Embed(
             title=asset_name,
             description=f'Price: {asset_price}\n[Link to Asset]({asset_link})',
@@ -105,19 +106,12 @@ async def on_ready():
     for guild in bot.guilds:
         print(f'- {guild.name} (ID: {guild.id})')
 
-# Event: Bot is ready
-@bot.event
-async def on_ready():
-    print(f'Logged in as {bot.user.name}')
-    print('Connected to the following servers:')
-    for guild in bot.guilds:
-        print(f'- {guild.name} (ID: {guild.id})')
-
 # Event: Bot joins a new server
 @bot.event
 async def on_guild_join(guild):
     print(f'Joined a new server: {guild.name} (ID: {guild.id})')
-    await guild.owner.send(f'Thanks for adding me to your server, {guild.name}! To set up automatic updates, use the `!set_channel` command in the channel where you want the updates. If you want to remove the automatic updates then use the `!remove_channel` command in the channel. If you want to test if the automatic update is working then use the `!test_update` command. Side note: Only people with *Administrator Privileges* can use the commands.')
+    await guild.owner.send(f'Thank you for adding me to your server, {guild.name}! To set up automatic updates, use the `/set_channel` command in the channel where you want the updates. If you want to remove the automatic updates then use the `/remove_channel` command in the channel. If you want to test if the automatic update is working then use the `/test_update` command. Side note: Only people with *Administrator Privileges* can use the commands.')
+
 
 # Command: Test Update
 @slash.slash(name='test_update', description='Trigger a test update to see the latest Unreal Engine assets.')
@@ -161,7 +155,7 @@ async def set_channel(ctx):
         save_channel_id(ctx.guild.id, ctx.channel.id)
         await ctx.send(f'Channel set to #{ctx.channel.name} for automatic updates.')
     else:
-        await ctx.send('Channel is already set. To change it, use `!remove_channel` first.')
+        await ctx.send('Channel is already set. To change it, use `/remove_channel` first.')
 
 # Command: Remove Channel
 @bot.command(name='remove_channel', help='Remove the set channel for automatic updates.')
@@ -172,7 +166,7 @@ async def remove_channel(ctx):
         save_channel_id(ctx.guild.id, None)
         await ctx.send('Channel removed. Automatic updates will not work until you set a new channel.')
     else:
-        await ctx.send('Channel is not set. To set it, use `!set_channel` first.')
+        await ctx.send('Channel is not set. To set it, use `/set_channel` first.')
 
 # Run the bot
 bot.run('bot_token')
