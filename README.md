@@ -19,7 +19,7 @@
       4. A new tab will open, displaying the version number of Chrome you're using (e.g., 91.0.4472.101). Note this version number down.
 
 ## Step 2: Download ChromeDriver
-      1. Visit the ChromeDriver download page: [ChromeDriver Downloads](https://developer.chrome.com/docs/chromedriver/downloads).
+      1. Visit the ChromeDriver download page. (I linked it under step 2)
      
       2. On this page, you’ll see a list of ChromeDriver versions. Select the version that corresponds to your Chrome version.
      
@@ -28,6 +28,8 @@
       4. Download the appropriate file for your operating system (e.g., chromedriver_win32.zip for Windows, chromedriver_mac64.zip for Mac, etc.).
      
       5. Extract the downloaded file to a location on your computer and remember this location for later.
+
+### [ChromeDriver Download Page](https://developer.chrome.com/docs/chromedriver/downloads)
 
 ## Step 3: Set Up ChromeDriver Path
       1. Once you’ve extracted the file, you’ll have an executable file named chromedriver.
