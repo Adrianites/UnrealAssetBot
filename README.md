@@ -44,7 +44,8 @@
    
    1. Open the bot's code in your favourite editor. (e.g., Visual Studio Code)
       
-   2. Locate the line in your code where the ChromeDriver path is specified: > `service = ChromeService(executable_path=r"Path/to/your/chrome/driver`.
+   2. Locate the line in your code where the ChromeDriver path is specified:
+       > `service = ChromeService(executable_path=r"Path/to/your/chrome/driver`.
       
    3. Replace `Path/to/your/chrome/driver` with the full path to the chromedriver executable.
 
