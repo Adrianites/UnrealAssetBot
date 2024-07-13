@@ -55,7 +55,7 @@
 
 ---
 
-## Side note
+## Sidenote
    
    Whenever you update Google Chrome, make sure to update ChromeDriver to the corresponding version to avoid compatibility issues.
     
