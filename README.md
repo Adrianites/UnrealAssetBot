@@ -1,9 +1,9 @@
 # Unreal Assets Bot
 
-## This is a discord bot that was created to track the "Free for the Month" assets on the Epic Marketplace
+## This is a discord bot that was created to track the "Free for the Month" assets on the Epic Marketplace.
 
 
-### *For this bot you will need a chromedriver for it to access the website*
+### *For this bot you will need a chromedriver for it to access the website.*
 
 ---
 
@@ -46,7 +46,7 @@
       
    2. Locate the line in your code where the ChromeDriver path is specified:
       
-       > `service = ChromeService(executable_path=r"Path/to/your/chrome/driver`.
+       > `service = ChromeService(executable_path=r"Path/to/your/chrome/driver`
        
        > (Check the code for all the changes that need to be made; they are written down at the bottom of the code with comments)
    
@@ -59,7 +59,7 @@
    
    Whenever you update Google Chrome, make sure to update ChromeDriver to the corresponding version to avoid compatibility issues.
     
-   __This bot is still in a work in progress build__
+   __This bot is still in a work in progress build.__
 
 ---
 
