@@ -330,5 +330,5 @@ bot.run("Bot_Token")
 
 # Changes to be made
     # Line 52  - Change "Path/to/your/chrome/driver" to your own path (eg. C:\Users\Joe\Documents\Chromedriver.exe)
-    # Line 194 - Change "[SERVER-NAME-HERE](<SERVER-LINK-HERE>)"" for your own Server (eg. [Joes Discord Server](<https://discord.gg/JoesServerLink>) 
-    # Line 326 - Change "Bot_Token" to your own bots token (Its a long line of random characters you receive in the Discord Developer Portal) 
+    # Line 196 - Change "[SERVER-NAME-HERE](<SERVER-LINK-HERE>)"" for your own Server (eg. [Joes Discord Server](<https://discord.gg/JoesServerLink>) 
+    # Line 327 - Change "Bot_Token" to your own bots token (Its a long line of random characters you receive in the Discord Developer Portal) 
