@@ -5,7 +5,7 @@
 
 *For this bot you will need a chromedriver for it to access the website.*
 
-Don't forget to update the ChromeDriver regularly to match the version of Chrome you are using, or it may result in errors!
+Don't forget to update the chromedriver regularly to match the version of Chrome you are using, or it may result in errors!
 
 ---
 
