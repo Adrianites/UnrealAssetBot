@@ -166,6 +166,8 @@ def delete_channel_id(guild_id):
 
 # Check admin permissions decorator
 def is_admin(interaction: discord.Interaction):
+    if interaction.guild is None:  # Check if the interaction is in a server
+        return False
     return interaction.user.guild_permissions.administrator
 
 # Event: Bot is ready
@@ -191,7 +193,7 @@ async def on_guild_join(guild):
 async def on_guild_remove(guild):
     print(f'Removed from server: {guild.name} (ID: {guild.id})')
     delete_channel_id(guild.id)
-    await guild.owner.send(f'I have been removed from your server `{guild.name}`. If you have any feedback or need assistance, feel free to contact my creator in my support server, [SERVER-NAME-HERE](<SERVER-LINK-HERE>) .')
+    await guild.owner.send(f'I have been removed from your server `{guild.name}`. If you have any feedback or need assistance, feel free to contact my creator in my support server, [SERVER-NAME-HERE](<SERVER-LINK-HERE>).')
 
 # Command: Test Update
 @bot.tree.command(name='test_update', description='Trigger a test update to see the latest Unreal Engine assets.')
@@ -207,15 +209,15 @@ async def test_update(interaction: discord.Interaction):
         await interaction.response.send_message('Channel not set. Please use `/set_channel` to set the channel for automatic updates.', ephemeral=True)
         return
 
-    await interaction.response.defer(ephemeral=True)  # Defer the response
-    await interaction.followup.send("Update Triggered!", ephemeral=True)
+    await interaction.response.send_message('Fetching latest assets...', ephemeral=True)
 
+    # Fetch and send asset information
     asset_info_list = get_unreal_engine_assets()
     if not asset_info_list:
-        await interaction.followup.send('No assets found or an error occurred during scraping.', ephemeral=True)
+        await interaction.followup.send('No assets found or an error occurred while fetching assets.', ephemeral=True)
         return
 
-    channel_id = load_channel_id(interaction.guild.id)
+    guild = bot.get_guild(interaction.guild.id)
     channel = bot.get_channel(channel_id)
     if channel is None:
         await interaction.followup.send('The channel for automatic updates could not be found. Please set it again using `/set_channel`.', ephemeral=True)
@@ -320,7 +322,6 @@ async def delete(interaction: discord.Interaction, user_id: str, time: str):
             await interaction.response.send_message(f"An error occurred: {str(e)}", ephemeral=True)
     else:
         await interaction.response.send_message("You do not have permission to use this command.", ephemeral=True)
-
 
 # Run the bot
 bot.run("Bot_Token")
