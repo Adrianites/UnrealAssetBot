@@ -2,10 +2,11 @@
 
  This is a discord bot that was created to track the "Free for the Month" assets on the Epic Marketplace.
 
-
-*For this bot you will need a chromedriver for it to access the website.*
+For this bot you will need a chromedriver for it to access the website.
 
 Don't forget to update the chromedriver regularly to match the version of Chrome you are using, or it may result in errors!
+
+
 
 ---
 
