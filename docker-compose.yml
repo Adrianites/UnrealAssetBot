@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  discord-bot:
+    build: .
+    container_name: UnrealAssetsBot
+    environment:
+      - BOT_TOKEN=${BOT_TOKEN}
+      - DRIVER_PATH=${DRIVER_PATH}
+      - SERVER_LINK=${SERVER_LINK}
+      - APPLICATION_ID=${APPLICATION_ID}
+    volumes:
+      - .:/usr/src/app
+    restart: always
