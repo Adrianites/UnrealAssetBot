@@ -10,6 +10,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
 from config import Driver_Path
+import time
+import subprocess
 
 def is_admin(interaction: discord.Interaction):
     if interaction.guild is None:
@@ -65,19 +67,136 @@ def get_next_asset_change_date():
     return next_asset_change_date.strftime("%d/%m/%Y")
 
 def get_unreal_engine_assets():
-    url = 'https://www.fab.com/blade/0691ff19-b259-44e0-ad3b-093a53010f46?context=homepage'
-
     options = Options()
     options.headless = True
     service = ChromeService(executable_path=Driver_Path)
-
     driver = webdriver.Chrome(service=service, options=options)
-    driver.get(url)
+    driver.get('https://www.fab.com')
 
     try:
+        # Wait for the main page to load and find the link with the specified class
+        WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.CLASS_NAME, 'fabkit-Blades-title')))
+        blade_link_elements = driver.find_elements(By.CSS_SELECTOR, 'a.fabkit-Blades-title.fabkit-Blades--interactive')
+        
+        blade_link = None
+        for element in blade_link_elements:
+            if "Limited-Time Free" in element.text:
+                blade_link = element.get_attribute('href')
+                break
+        
+        if not blade_link:
+            raise Exception("Could not find the Limited-Time Free link.")
+        
+        print(f"Found free assets link: {blade_link}")
+
+        # Ensure the URL is correctly formatted
+        if not blade_link.startswith("http"):
+            blade_link = f"https://www.fab.com{blade_link}"
+
+        # Navigate to the blade link
+        driver.get(blade_link)
+
+        # Check for human verification page
+        if "cf_challenge_container" in driver.page_source:
+            print("Human verification page detected. Attempting to solve.")
+            try:
+                # Add a longer delay to ensure the page has fully loaded
+                time.sleep(10)
+                
+                # Wait for the challenge form to be present
+                WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.ID, 'challenge-form')))
+                
+                # Loop to wait for the span element to appear
+                span_element = None
+                for _ in range(20):  # Try for up to 20 seconds
+                    try:
+                        span_element = driver.execute_script('''
+                            let shadowRoot1 = document.querySelector("label.cb-lb");
+                            if (!shadowRoot1) {
+                                console.log("shadowRoot1 not found");
+                                return null;
+                            }
+                            console.log("shadowRoot1 found");
+                            shadowRoot1 = shadowRoot1.shadowRoot;
+                            if (!shadowRoot1) {
+                                console.log("shadowRoot1.shadowRoot not found");
+                                return null;
+                            }
+                            console.log("shadowRoot1.shadowRoot found");
+                            let shadowRoot2 = shadowRoot1.querySelector("#shadow-root");
+                            if (!shadowRoot2) {
+                                console.log("shadowRoot2 not found");
+                                return null;
+                            }
+                            console.log("shadowRoot2 found");
+                            shadowRoot2 = shadowRoot2.shadowRoot;
+                            if (!shadowRoot2) {
+                                console.log("shadowRoot2.shadowRoot not found");
+                                return null;
+                            }
+                            console.log("shadowRoot2.shadowRoot found");
+                            let shadowRoot3 = shadowRoot2.querySelector("#document");
+                            if (!shadowRoot3) {
+                                console.log("shadowRoot3 not found");
+                                return null;
+                            }
+                            console.log("shadowRoot3 found");
+                            shadowRoot3 = shadowRoot3.shadowRoot;
+                            if (!shadowRoot3) {
+                                console.log("shadowRoot3.shadowRoot not found");
+                                return null;
+                            }
+                            console.log("shadowRoot3.shadowRoot found");
+                            let shadowRoot4 = shadowRoot3.querySelector("#shadow-root");
+                            if (!shadowRoot4) {
+                                console.log("shadowRoot4 not found");
+                                return null;
+                            }
+                            console.log("shadowRoot4 found");
+                            shadowRoot4 = shadowRoot4.shadowRoot;
+                            if (!shadowRoot4) {
+                                console.log("shadowRoot4.shadowRoot not found");
+                                return null;
+                            }
+                            console.log("shadowRoot4.shadowRoot found");
+                            return shadowRoot4.querySelector("span.cb-i");
+                        ''')
+                        if span_element:
+                            break
+                    except Exception as e:
+                        print(f"Error accessing shadow DOM: {e}")
+                    time.sleep(1)
+                
+                if span_element:
+                    checkbox = driver.execute_script('''
+                        let shadowRoot1 = document.querySelector("label.cb-lb").shadowRoot;
+                        let shadowRoot2 = shadowRoot1.querySelector("#shadow-root").shadowRoot;
+                        let shadowRoot3 = shadowRoot2.querySelector("#document").shadowRoot;
+                        let shadowRoot4 = shadowRoot3.querySelector("#shadow-root").shadowRoot;
+                        return shadowRoot4.querySelector("input[type='checkbox']");
+                    ''')
+                    if checkbox:
+                        driver.execute_script("arguments[0].click();", checkbox)
+                        print("Checked the verification checkbox.")
+                    else:
+                        raise Exception("Checkbox not found in shadow DOM.")
+                else:
+                    raise Exception("Span element not found in shadow DOM.")
+                
+                # Wait for the verification to complete
+                time.sleep(10)
+                
+                # Wait for the assets page to load
+                WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.CLASS_NAME, 'fabkit-ResultGrid-root')))
+            except Exception as e:
+                print(f"Error solving human verification: {e}")
+                driver.quit()
+                return []
+
+        # Wait for the assets page to load
         WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.CLASS_NAME, 'fabkit-ResultGrid-root')))
     except Exception as e:
-        print(f"Error waiting for page to load: {e}")
+        print(f"Error navigating to assets page: {e}")
         driver.quit()
         return []
 
