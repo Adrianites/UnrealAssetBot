@@ -2,7 +2,72 @@ import discord
 from discord import app_commands
 from utils import is_admin, get_unreal_engine_assets, load_channel_id, save_channel_id, delete_channel_id
 from datetime import datetime, timedelta, timezone
+import yt_dlp as youtube_dl
+from config import FFMPEG_Path, DropBox_Access_Token
+import dropbox
 import asyncio
+import os
+import re
+
+class FormatSelect(discord.ui.Select):
+    def __init__(self, url):
+        self.url = url
+        options = [
+            discord.SelectOption(label='MP4', description='Download as MP4', value='mp4'),
+            discord.SelectOption(label='MP3', description='Download as MP3', value='mp3')
+        ]
+        super().__init__(placeholder='Choose the format...', min_values=1, max_values=1, options=options)
+
+    async def callback(self, interaction: discord.Interaction):
+        format = self.values[0]
+        await interaction.response.send_message('Downloading video...', ephemeral=True)
+
+        try:
+            ydl_opts = {
+                'format': 'bestvideo[height<=1080]+bestaudio/best' if format == 'mp4' else 'bestaudio/best',
+                'outtmpl': 'downloads/%(title)s.%(ext)s',
+                'postprocessors': [{
+                    'key': 'FFmpegVideoConvertor',
+                    'preferedformat': 'mp4',
+                }] if format == 'mp4' else [{
+                    'key': 'FFmpegExtractAudio',
+                    'preferredcodec': 'mp3',
+                    'preferredquality': '192',
+                }],
+                'ffmpeg_location': FFMPEG_Path
+            }
+
+            with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+                info_dict = ydl.extract_info(self.url, download=True)
+                title = info_dict.get('title', None)
+                # Remove invalid characters from the title
+                title = re.sub(r'[\\/*?:"<>|]', "", title)
+                ext = 'mp3' if format == 'mp3' else 'mp4'
+                file_path = f'downloads/{title}.{ext}'
+
+                # Upload the file to Dropbox
+                dbx = dropbox.Dropbox(DropBox_Access_Token)
+                with open(file_path, "rb") as f:
+                    dbx.files_upload(f.read(), f'/{title}.{ext}', mute=True)
+                shared_link_metadata = dbx.sharing_create_shared_link_with_settings(f'/{title}.{ext}')
+                dropbox_link = shared_link_metadata.url.replace("?dl=0", "?dl=1")
+
+                await interaction.followup.send(f'Video downloaded successfully: {title}.{ext}', ephemeral=True)
+                await interaction.followup.send(f'You have 2 minutes to download your video.\nDownload link: [{title}]({dropbox_link})', ephemeral=True)
+
+                # Delete the file after uploading
+                os.remove(file_path)
+
+                # Wait for 2 minutes before deleting the file from Dropbox
+                await asyncio.sleep(120)
+                dbx.files_delete_v2(f'/{title}.{ext}')
+        except Exception as e:
+            await interaction.followup.send(f'Error downloading video: {e}', ephemeral=True)
+
+class FormatSelectView(discord.ui.View):
+    def __init__(self, url):
+        super().__init__()
+        self.add_item(FormatSelect(url))
 
 async def setup_commands(bot):
     @bot.tree.command(name='test_update', description='Trigger a test update to see the latest Unreal Engine assets.')
@@ -67,6 +132,7 @@ async def setup_commands(bot):
         **/remove_channel** - Remove the channel for automatic updates on the latest **Free** Assets.
         **/test_update** - Trigger a test update to see the latest Unreal Engine assets.
         **/delete** - Deletes recent messages of a user. - Use `M, H, or D` for Minutes, Hours, or Days (eg. *3h* for 3 hours)
+        **/download_youtube** - Download a YouTube video.
         **/list_of_commands** - List all commands of the bot.
 
         Side note: Only people with `Administrator Privileges` can use the commands.
@@ -124,3 +190,11 @@ async def setup_commands(bot):
                 await interaction.followup.send(f"An error occurred: {str(e)}", ephemeral=True)
         else:
             await interaction.followup.send("You do not have permission to use this command.", ephemeral=True)
+
+    @bot.tree.command(name='download_youtube', description='Download a YouTube video.')
+    async def download_youtube(interaction: discord.Interaction, url: str):
+        if isinstance(interaction.channel, discord.DMChannel):
+            await interaction.response.send_message("Commands cannot be used in DMs. Please use this command in a server.", ephemeral=True)
+            return
+
+        await interaction.response.send_message('Please select the format:', view=FormatSelectView(url), ephemeral=True)

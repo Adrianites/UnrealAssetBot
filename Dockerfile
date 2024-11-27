@@ -15,6 +15,7 @@ RUN apt-get update && apt-get install -y \
     libgconf-2-4 \
     gnupg \
     mesa-vulkan-drivers \
+    ffmpeg \
     && rm -rf /var/lib/apt/lists/*
 
 # Install ChromeDriver
