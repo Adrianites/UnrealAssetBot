@@ -1,0 +1,11 @@
+[package]
+name = "youtube_downloader"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+pyo3 = { version = "0.15.1", features = ["extension-module"] }
+yt-dlp = "0.1.0"  # Add the yt-dlp crate
+
+[lib]
+crate-type = ["cdylib"]

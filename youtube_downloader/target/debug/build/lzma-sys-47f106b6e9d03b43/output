@@ -1,0 +1,283 @@
+cargo:rerun-if-changed=build.rs
+cargo:rerun-if-env-changed=LZMA_API_STATIC
+cargo:root=D:\_Github_Reps\UnrealAssetBot\youtube_downloader\target\debug\build\lzma-sys-47f106b6e9d03b43\out
+cargo:include=C:\Users\Zaza4\.cargo\registry\src\index.crates.io-6f17d22bba15001f\lzma-sys-0.1.20\xz-5.2/src/liblzma/api
+OUT_DIR = Some(D:\_Github_Reps\UnrealAssetBot\youtube_downloader\target\debug\build\lzma-sys-47f106b6e9d03b43\out)
+OPT_LEVEL = Some(0)
+TARGET = Some(x86_64-pc-windows-msvc)
+cargo:rerun-if-env-changed=VCINSTALLDIR
+VCINSTALLDIR = None
+cargo:rerun-if-env-changed=VSTEL_MSBuildProjectFullPath
+VSTEL_MSBuildProjectFullPath = None
+cargo:rerun-if-env-changed=VSCMD_ARG_VCVARS_SPECTRE
+VSCMD_ARG_VCVARS_SPECTRE = None
+cargo:rerun-if-env-changed=WindowsSdkDir
+WindowsSdkDir = None
+cargo:rerun-if-env-changed=WindowsSDKVersion
+WindowsSDKVersion = None
+cargo:rerun-if-env-changed=LIB
+LIB = None
+PATH = Some(D:\_Github_Reps\UnrealAssetBot\youtube_downloader\target\debug\deps;D:\_Github_Reps\UnrealAssetBot\youtube_downloader\target\debug;C:\Users\Zaza4\.rustup\toolchains\stable-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib;D:\_Github_Reps\UnrealAssetBot\.venv\Scripts;C:\Program Files (x86)\Common Files\Oracle\Java\java8path;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Tailscale\;C:\Program Files\Git\cmd;C:\Program Files (x86)\ZeroTier\One\;C:\Program Files\nodejs\;C:\Program Files\NVIDIA Corporation\NVIDIA app\NvDLISR;C:\Users\Zaza4\.cargo\bin;C:\Users\Zaza4\AppData\Local\Programs\Python\Python311\Scripts\;C:\Users\Zaza4\AppData\Local\Programs\Python\Python311\;C:\Users\Zaza4\AppData\Local\Programs\Python\Launcher\;C:\Users\Zaza4\AppData\Local\Microsoft\WindowsApps;C:\Users\Zaza4\.dotnet\tools;C:\Users\Zaza4\AppData\Local\GitHubDesktop\bin;C:\Users\Zaza4\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\heroku\bin;C:\Users\Zaza4\AppData\Roaming\npm;)
+cargo:rerun-if-env-changed=INCLUDE
+INCLUDE = None
+HOST = Some(x86_64-pc-windows-msvc)
+cargo:rerun-if-env-changed=CC_x86_64-pc-windows-msvc
+CC_x86_64-pc-windows-msvc = None
+cargo:rerun-if-env-changed=CC_x86_64_pc_windows_msvc
+CC_x86_64_pc_windows_msvc = None
+cargo:rerun-if-env-changed=HOST_CC
+HOST_CC = None
+cargo:rerun-if-env-changed=CC
+CC = None
+cargo:rerun-if-env-changed=CRATE_CC_NO_DEFAULTS
+CRATE_CC_NO_DEFAULTS = None
+CARGO_CFG_TARGET_FEATURE = Some(cmpxchg16b,fxsr,sse,sse2,sse3)
+DEBUG = Some(true)
+cargo:rerun-if-env-changed=CFLAGS_x86_64-pc-windows-msvc
+CFLAGS_x86_64-pc-windows-msvc = None
+cargo:rerun-if-env-changed=CFLAGS_x86_64_pc_windows_msvc
+CFLAGS_x86_64_pc_windows_msvc = None
+cargo:rerun-if-env-changed=HOST_CFLAGS
+HOST_CFLAGS = None
+cargo:rerun-if-env-changed=CFLAGS
+CFLAGS = None
+cargo:rerun-if-env-changed=CC_ENABLE_DEBUG_OUTPUT
+tuklib_cpucores.c
+tuklib_physmem.c
+xz-5.2/src/common/tuklib_physmem.c(82): warning C4996: 'GetVersion': was declared deprecated
+check.c
+crc32_fast.c
+crc32_table.c
+crc64_fast.c
+xz-5.2/src/liblzma/check\crc64_fast.c(52): warning C4244: 'initializing': conversion from 'uint64_t' to 'const uint32_t', possible loss of data
+crc64_table.c
+sha256.c
+alone_decoder.c
+C:\Users\Zaza4\.cargo\registry\src\index.crates.io-6f17d22bba15001f\lzma-sys-0.1.20\xz-5.2\src\liblzma\lz\lz_decoder.h(132): warning C4267: 'initializing': conversion from 'size_t' to 'uint32_t', possible loss of data
+C:\Users\Zaza4\.cargo\registry\src\index.crates.io-6f17d22bba15001f\lzma-sys-0.1.20\xz-5.2\src\liblzma\lz\lz_decoder.h(159): warning C4267: 'initializing': conversion from 'size_t' to 'const uint32_t', possible loss of data
+C:\Users\Zaza4\.cargo\registry\src\index.crates.io-6f17d22bba15001f\lzma-sys-0.1.20\xz-5.2\src\liblzma\lz\lz_decoder.h(160): warning C4267: 'initializing': conversion from 'size_t' to 'uint32_t', possible loss of data
+alone_encoder.c
+exit code: 0
+exit code: 0
+exit code: 0
+exit code: 0
+exit code: 0
+exit code: 0
+exit code: 0
+exit code: 0
+exit code: 0
+auto_decoder.c
+block_buffer_decoder.c
+block_buffer_encoder.c
+block_decoder.c
+xz-5.2/src/liblzma/common\block_buffer_encoder.c(147): warning C4267: '=': conversion from 'size_t' to 'uint8_t', possible loss of data
+block_encoder.c
+xz-5.2/src/liblzma/common\block_encoder.c(150): warning C4100: 'filters': unreferenced formal parameter
+block_header_decoder.c
+block_header_encoder.c
+xz-5.2/src/liblzma/common\block_header_encoder.c(85): warning C4267: '=': conversion from 'size_t' to 'uint8_t', possible loss of data
+block_util.c
+common.c
+easy_buffer_encoder.c
+exit code: 0
+exit code: 0
+exit code: 0
+exit code: 0
+exit code: 0
+exit code: 0
+exit code: 0
+exit code: 0
+exit code: 0
+exit code: 0
+easy_decoder_memusage.c
+easy_encoder.c
+easy_encoder_memusage.c
+easy_preset.c
+filter_buffer_decoder.c
+filter_buffer_encoder.c
+filter_common.c
+filter_decoder.c
+filter_flags_decoder.c
+filter_encoder.c
+hardware_cputhreads.c
+filter_flags_encoder.c
+exit code: 0
+exit code: 0
+exit code: 0
+exit code: 0
+exit code: 0
+exit code: 0
+exit code: 0
+exit code: 0
+exit code: 0
+hardware_physmem.c
+index.c
+index_decoder.c
+index_encoder.c
+index_hash.c
+outqueue.c
+xz-5.2/src/liblzma/common\index.c(102): warning C4200: nonstandard extension used: zero-sized array in struct/union
+xz-5.2/src/liblzma/common\index_decoder.c(63): warning C4100: 'action': unreferenced formal parameter
+xz-5.2/src/liblzma/common\index_decoder.c(62): warning C4100: 'out_size': unreferenced formal parameter
+xz-5.2/src/liblzma/common\index_decoder.c(61): warning C4100: 'out_pos': unreferenced formal parameter
+xz-5.2/src/liblzma/common\index_decoder.c(60): warning C4100: 'out': unreferenced formal parameter
+xz-5.2/src/liblzma/common\index_encoder.c(51): warning C4100: 'action': unreferenced formal parameter
+xz-5.2/src/liblzma/common\index_encoder.c(48): warning C4100: 'in_size': unreferenced formal parameter
+xz-5.2/src/liblzma/common\index_encoder.c(47): warning C4100: 'in_pos': unreferenced formal parameter
+xz-5.2/src/liblzma/common\index_encoder.c(46): warning C4100: 'in': unreferenced formal parameter
+xz-5.2/src/liblzma/common\index_encoder.c(45): warning C4100: 'allocator': unreferenced formal parameter
+stream_buffer_decoder.c
+stream_buffer_encoder.c
+stream_decoder.c
+stream_encoder.c
+exit code: 0
+exit code: 0
+exit code: 0
+exit code: 0
+exit code: 0
+exit code: 0
+exit code: 0
+exit code: 0
+exit code: 0
+exit code: 0
+stream_encoder_mt.c
+stream_flags_common.c
+stream_flags_decoder.c
+stream_flags_encoder.c
+vli_decoder.c
+C:\Users\Zaza4\.cargo\registry\src\index.crates.io-6f17d22bba15001f\lzma-sys-0.1.20\xz-5.2\src\liblzma\common\stream_encoder_mt.c(607) : warning C4701: potentially uninitialized local variable 'ret' used
+vli_encoder.c
+delta_common.c
+vli_size.c
+delta_decoder.c
+delta_encoder.c
+lz_decoder.c
+xz-5.2/src/liblzma/delta\delta_encoder.c(90): warning C4100: 'filters_null': unreferenced formal parameter
+xz-5.2/src/liblzma/delta\delta_encoder.c(122): warning C4244: '=': conversion from 'const uint32_t' to 'uint8_t', possible loss of data
+exit code: 0
+exit code: 0
+exit code: 0
+exit code: 0
+exit code: 0
+exit code: 0
+exit code: 0
+exit code: 0
+exit code: 0
+lz_encoder.c
+lz_encoder_mf.c
+fastpos_table.c
+lzma2_decoder.c
+lzma2_encoder.c
+C:\Users\Zaza4\.cargo\registry\src\index.crates.io-6f17d22bba15001f\lzma-sys-0.1.20\xz-5.2\src\liblzma\lz\lz_decoder.h(132): warning C4267: 'initializing': conversion from 'size_t' to 'uint32_t', possible loss of data
+C:\Users\Zaza4\.cargo\registry\src\index.crates.io-6f17d22bba15001f\lzma-sys-0.1.20\xz-5.2\src\liblzma\lz\lz_decoder.h(159): warning C4267: 'initializing': conversion from 'size_t' to 'const uint32_t', possible loss of data
+C:\Users\Zaza4\.cargo\registry\src\index.crates.io-6f17d22bba15001f\lzma-sys-0.1.20\xz-5.2\src\liblzma\lz\lz_decoder.h(160): warning C4267: 'initializing': conversion from 'size_t' to 'uint32_t', possible loss of data
+xz-5.2/src/liblzma/lz\lz_encoder_mf.c(333): warning C4244: '=': conversion from '__int64' to 'uint32_t', possible loss of data
+xz-5.2/src/liblzma/lz\lz_encoder_mf.c(412): warning C4244: '=': conversion from '__int64' to 'uint32_t', possible loss of data
+xz-5.2/src/liblzma/lz\lz_encoder_mf.c(596): warning C4244: '=': conversion from '__int64' to 'uint32_t', possible loss of data
+xz-5.2/src/liblzma/lz\lz_encoder_mf.c(648): warning C4244: '=': conversion from '__int64' to 'uint32_t', possible loss of data
+xz-5.2/src/liblzma/lz\lz_encoder_mf.c(721): warning C4244: '=': conversion from '__int64' to 'uint32_t', possible loss of data
+xz-5.2/src/liblzma/lzma\lzma2_encoder.c(85): warning C4267: '+=': conversion from 'size_t' to 'uint8_t', possible loss of data
+xz-5.2/src/liblzma/lzma\lzma2_encoder.c(91): warning C4267: '=': conversion from 'size_t' to 'uint8_t', possible loss of data
+xz-5.2/src/liblzma/lzma\lzma2_encoder.c(126): warning C4267: '=': conversion from 'size_t' to 'uint8_t', possible loss of data
+xz-5.2/src/liblzma/lzma\lzma2_encoder.c(170): warning C4267: 'initializing': conversion from 'size_t' to 'const uint32_t', possible loss of data
+xz-5.2/src/liblzma/lzma\lzma2_encoder.c(397): warning C4244: '=': conversion from 'uint32_t' to 'uint8_t', possible loss of data
+C:\Users\Zaza4\.cargo\registry\src\index.crates.io-6f17d22bba15001f\lzma-sys-0.1.20\xz-5.2\src\liblzma\lz\lz_decoder.h(132): warning C4267: 'initializing': conversion from 'size_t' to 'uint32_t', possible loss of data
+C:\Users\Zaza4\.cargo\registry\src\index.crates.io-6f17d22bba15001f\lzma-sys-0.1.20\xz-5.2\src\liblzma\lz\lz_decoder.h(159): warning C4267: 'initializing': conversion from 'size_t' to 'const uint32_t', possible loss of data
+C:\Users\Zaza4\.cargo\registry\src\index.crates.io-6f17d22bba15001f\lzma-sys-0.1.20\xz-5.2\src\liblzma\lz\lz_decoder.h(160): warning C4267: 'initializing': conversion from 'size_t' to 'uint32_t', possible loss of data
+xz-5.2/src/liblzma/lz\lz_encoder.c(111): warning C4267: '=': conversion from 'size_t' to 'uint32_t', possible loss of data
+xz-5.2/src/liblzma/lz\lz_encoder.c(205): warning C4267: '=': conversion from 'size_t' to 'uint32_t', possible loss of data
+xz-5.2/src/liblzma/lz\lz_encoder.c(208): warning C4267: '=': conversion from 'size_t' to 'uint32_t', possible loss of data
+xz-5.2/src/liblzma/lz\lz_encoder.c(226): warning C4267: '+=': conversion from 'size_t' to 'uint32_t', possible loss of data
+xz-5.2/src/liblzma/lz\lz_encoder.c(239): warning C4267: '=': conversion from 'size_t' to 'uint32_t', possible loss of data
+xz-5.2/src/liblzma/lz\lz_encoder.c(240): warning C4267: '=': conversion from 'size_t' to 'uint32_t', possible loss of data
+xz-5.2/src/liblzma/lz\lz_encoder.c(257): warning C4267: '=': conversion from 'size_t' to 'uint32_t', possible loss of data
+xz-5.2/src/liblzma/lz\lz_encoder.c(310): warning C4267: '=': conversion from 'size_t' to 'uint32_t', possible loss of data
+xz-5.2/src/liblzma/lz\lz_encoder.c(221): warning C4267: 'initializing': conversion from 'size_t' to 'uint32_t', possible loss of data
+xz-5.2/src/liblzma/lz\lz_encoder.c(508): warning C4100: 'filters_null': unreferenced formal parameter
+exit code: 0
+exit code: 0
+exit code: 0
+exit code: 0
+exit code: 0
+exit code: 0
+exit code: 0
+exit code: 0
+exit code: 0
+exit code: 0
+lzma_decoder.c
+lzma_encoder.c
+lzma_encoder_optimum_normal.c
+lzma_encoder_optimum_fast.c
+C:\Users\Zaza4\.cargo\registry\src\index.crates.io-6f17d22bba15001f\lzma-sys-0.1.20\xz-5.2\src\liblzma\lz\lz_decoder.h(132): warning C4267: 'initializing': conversion from 'size_t' to 'uint32_t', possible loss of data
+C:\Users\Zaza4\.cargo\registry\src\index.crates.io-6f17d22bba15001f\lzma-sys-0.1.20\xz-5.2\src\liblzma\lz\lz_decoder.h(159): warning C4267: 'initializing': conversion from 'size_t' to 'const uint32_t', possible loss of data
+C:\Users\Zaza4\.cargo\registry\src\index.crates.io-6f17d22bba15001f\lzma-sys-0.1.20\xz-5.2\src\liblzma\lz\lz_decoder.h(160): warning C4267: 'initializing': conversion from 'size_t' to 'uint32_t', possible loss of data
+xz-5.2/src/liblzma/lzma\lzma_decoder.c(485): warning C4244: 'function': conversion from 'uint32_t' to 'uint8_t', possible loss of data
+xz-5.2/src/liblzma/lzma\lzma_decoder.c(1007): warning C4244: '-=': conversion from 'uint32_t' to 'uint8_t', possible loss of data
+xz-5.2/src/liblzma/lzma\lzma_encoder.c(650): warning C4244: '=': conversion from 'const uint32_t' to 'uint8_t', possible loss of data
+lzma_encoder_presets.c
+price_table.c
+arm.c
+armthumb.c
+C:\Users\Zaza4\.cargo\registry\src\index.crates.io-6f17d22bba15001f\lzma-sys-0.1.20\xz-5.2\src\liblzma\simple\simple_private.h(62): warning C4200: nonstandard extension used: zero-sized array in struct/union
+xz-5.2/src/liblzma/simple\arm.c(37): warning C4244: '=': conversion from 'uint32_t' to 'uint8_t', possible loss of data
+xz-5.2/src/liblzma/simple\arm.c(38): warning C4244: '=': conversion from 'uint32_t' to 'uint8_t', possible loss of data
+xz-5.2/src/liblzma/simple\arm.c(39): warning C4244: '=': conversion from 'uint32_t' to 'uint8_t', possible loss of data
+xz-5.2/src/liblzma/simple\arm.c(18): warning C4100: 'simple': unreferenced formal parameter
+C:\Users\Zaza4\.cargo\registry\src\index.crates.io-6f17d22bba15001f\lzma-sys-0.1.20\xz-5.2\src\liblzma\simple\simple_private.h(62): warning C4200: nonstandard extension used: zero-sized array in struct/union
+xz-5.2/src/liblzma/simple\armthumb.c(41): warning C4244: '=': conversion from 'uint32_t' to 'uint8_t', possible loss of data
+xz-5.2/src/liblzma/simple\armthumb.c(43): warning C4244: '=': conversion from 'uint32_t' to 'uint8_t', possible loss of data
+xz-5.2/src/liblzma/simple\armthumb.c(18): warning C4100: 'simple': unreferenced formal parameter
+ia64.c
+C:\Users\Zaza4\.cargo\registry\src\index.crates.io-6f17d22bba15001f\lzma-sys-0.1.20\xz-5.2\src\liblzma\simple\simple_private.h(62): warning C4200: nonstandard extension used: zero-sized array in struct/union
+xz-5.2/src/liblzma/simple\ia64.c(18): warning C4100: 'simple': unreferenced formal parameter
+exit code: 0
+exit code: 0
+exit code: 0
+exit code: 0
+exit code: 0
+exit code: 0
+exit code: 0
+exit code: 0
+exit code: 0
+powerpc.c
+C:\Users\Zaza4\.cargo\registry\src\index.crates.io-6f17d22bba15001f\lzma-sys-0.1.20\xz-5.2\src\liblzma\simple\simple_private.h(62): warning C4200: nonstandard extension used: zero-sized array in struct/union
+xz-5.2/src/liblzma/simple\powerpc.c(41): warning C4244: '=': conversion from 'uint32_t' to 'uint8_t', possible loss of data
+xz-5.2/src/liblzma/simple\powerpc.c(42): warning C4244: '=': conversion from 'uint32_t' to 'uint8_t', possible loss of data
+xz-5.2/src/liblzma/simple\powerpc.c(18): warning C4100: 'simple': unreferenced formal parameter
+simple_coder.c
+C:\Users\Zaza4\.cargo\registry\src\index.crates.io-6f17d22bba15001f\lzma-sys-0.1.20\xz-5.2\src\liblzma\simple\simple_private.h(62): warning C4200: nonstandard extension used: zero-sized array in struct/union
+xz-5.2/src/liblzma/simple\simple_coder.c(63): warning C4267: '+=': conversion from 'size_t' to 'uint32_t', possible loss of data
+xz-5.2/src/liblzma/simple\simple_coder.c(223): warning C4100: 'filters_null': unreferenced formal parameter
+simple_encoder.c
+simple_decoder.c
+sparc.c
+x86.c
+C:\Users\Zaza4\.cargo\registry\src\index.crates.io-6f17d22bba15001f\lzma-sys-0.1.20\xz-5.2\src\liblzma\simple\simple_private.h(62): warning C4200: nonstandard extension used: zero-sized array in struct/union
+C:\Users\Zaza4\.cargo\registry\src\index.crates.io-6f17d22bba15001f\lzma-sys-0.1.20\xz-5.2\src\liblzma\simple\simple_private.h(62): warning C4200: nonstandard extension used: zero-sized array in struct/union
+xz-5.2/src/liblzma/simple\sparc.c(18): warning C4100: 'simple': unreferenced formal parameter
+exit code: 0
+exit code: 0
+exit code: 0
+exit code: 0
+exit code: 0
+exit code: 0
+exit code: 0
+cargo:rerun-if-env-changed=AR_x86_64-pc-windows-msvc
+AR_x86_64-pc-windows-msvc = None
+cargo:rerun-if-env-changed=AR_x86_64_pc_windows_msvc
+AR_x86_64_pc_windows_msvc = None
+cargo:rerun-if-env-changed=HOST_AR
+HOST_AR = None
+cargo:rerun-if-env-changed=AR
+AR = None
+cargo:rerun-if-env-changed=ARFLAGS_x86_64-pc-windows-msvc
+ARFLAGS_x86_64-pc-windows-msvc = None
+cargo:rerun-if-env-changed=ARFLAGS_x86_64_pc_windows_msvc
+ARFLAGS_x86_64_pc_windows_msvc = None
+cargo:rerun-if-env-changed=HOST_ARFLAGS
+HOST_ARFLAGS = None
+cargo:rerun-if-env-changed=ARFLAGS
+ARFLAGS = None
+cargo:rustc-link-search=native=C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\atlmfc\lib\x64
+cargo:rustc-link-lib=static=lzma
+cargo:rustc-link-search=native=D:\_Github_Reps\UnrealAssetBot\youtube_downloader\target\debug\build\lzma-sys-47f106b6e9d03b43\out

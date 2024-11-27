@@ -1,0 +1,88 @@
+OPT_LEVEL = Some(0)
+TARGET = Some(x86_64-pc-windows-msvc)
+cargo:rerun-if-env-changed=VCINSTALLDIR
+VCINSTALLDIR = None
+cargo:rerun-if-env-changed=VSTEL_MSBuildProjectFullPath
+VSTEL_MSBuildProjectFullPath = None
+cargo:rerun-if-env-changed=VSCMD_ARG_VCVARS_SPECTRE
+VSCMD_ARG_VCVARS_SPECTRE = None
+cargo:rerun-if-env-changed=WindowsSdkDir
+WindowsSdkDir = None
+cargo:rerun-if-env-changed=WindowsSDKVersion
+WindowsSDKVersion = None
+cargo:rerun-if-env-changed=LIB
+LIB = None
+PATH = Some(D:\_Github_Reps\UnrealAssetBot\youtube_downloader\target\debug\deps;D:\_Github_Reps\UnrealAssetBot\youtube_downloader\target\debug;C:\Users\Zaza4\.rustup\toolchains\stable-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib;D:\_Github_Reps\UnrealAssetBot\.venv\Scripts;C:\Program Files (x86)\Common Files\Oracle\Java\java8path;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Tailscale\;C:\Program Files\Git\cmd;C:\Program Files (x86)\ZeroTier\One\;C:\Program Files\nodejs\;C:\Program Files\NVIDIA Corporation\NVIDIA app\NvDLISR;C:\Users\Zaza4\.cargo\bin;C:\Users\Zaza4\AppData\Local\Programs\Python\Python311\Scripts\;C:\Users\Zaza4\AppData\Local\Programs\Python\Python311\;C:\Users\Zaza4\AppData\Local\Programs\Python\Launcher\;C:\Users\Zaza4\AppData\Local\Microsoft\WindowsApps;C:\Users\Zaza4\.dotnet\tools;C:\Users\Zaza4\AppData\Local\GitHubDesktop\bin;C:\Users\Zaza4\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\heroku\bin;C:\Users\Zaza4\AppData\Roaming\npm;)
+cargo:rerun-if-env-changed=INCLUDE
+INCLUDE = None
+HOST = Some(x86_64-pc-windows-msvc)
+cargo:rerun-if-env-changed=CC_x86_64-pc-windows-msvc
+CC_x86_64-pc-windows-msvc = None
+cargo:rerun-if-env-changed=CC_x86_64_pc_windows_msvc
+CC_x86_64_pc_windows_msvc = None
+cargo:rerun-if-env-changed=HOST_CC
+HOST_CC = None
+cargo:rerun-if-env-changed=CC
+CC = None
+cargo:rerun-if-env-changed=CRATE_CC_NO_DEFAULTS
+CRATE_CC_NO_DEFAULTS = None
+CARGO_CFG_TARGET_FEATURE = Some(cmpxchg16b,fxsr,sse,sse2,sse3)
+DEBUG = Some(true)
+cargo:rerun-if-env-changed=CFLAGS_x86_64-pc-windows-msvc
+CFLAGS_x86_64-pc-windows-msvc = None
+cargo:rerun-if-env-changed=CFLAGS_x86_64_pc_windows_msvc
+CFLAGS_x86_64_pc_windows_msvc = None
+cargo:rerun-if-env-changed=HOST_CFLAGS
+HOST_CFLAGS = None
+cargo:rerun-if-env-changed=CFLAGS
+CFLAGS = None
+cargo:rerun-if-env-changed=CC_ENABLE_DEBUG_OUTPUT
+blocksort.c
+C:\Users\Zaza4\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bzip2-sys-0.1.11+1.0.8\bzip2-1.0.8\bzlib.h(70): warning C4005: 'BZ_EXPORT': macro redefinition
+C:\Users\Zaza4\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bzip2-sys-0.1.11+1.0.8\bzip2-1.0.8\bzlib.h(70): note: 'BZ_EXPORT' previously declared on the command line
+huffman.c
+C:\Users\Zaza4\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bzip2-sys-0.1.11+1.0.8\bzip2-1.0.8\bzlib.h(70): warning C4005: 'BZ_EXPORT': macro redefinition
+C:\Users\Zaza4\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bzip2-sys-0.1.11+1.0.8\bzip2-1.0.8\bzlib.h(70): note: 'BZ_EXPORT' previously declared on the command line
+crctable.c
+C:\Users\Zaza4\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bzip2-sys-0.1.11+1.0.8\bzip2-1.0.8\bzlib.h(70): warning C4005: 'BZ_EXPORT': macro redefinition
+C:\Users\Zaza4\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bzip2-sys-0.1.11+1.0.8\bzip2-1.0.8\bzlib.h(70): note: 'BZ_EXPORT' previously declared on the command line
+randtable.c
+C:\Users\Zaza4\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bzip2-sys-0.1.11+1.0.8\bzip2-1.0.8\bzlib.h(70): warning C4005: 'BZ_EXPORT': macro redefinition
+C:\Users\Zaza4\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bzip2-sys-0.1.11+1.0.8\bzip2-1.0.8\bzlib.h(70): note: 'BZ_EXPORT' previously declared on the command line
+compress.c
+C:\Users\Zaza4\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bzip2-sys-0.1.11+1.0.8\bzip2-1.0.8\bzlib.h(70): warning C4005: 'BZ_EXPORT': macro redefinition
+C:\Users\Zaza4\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bzip2-sys-0.1.11+1.0.8\bzip2-1.0.8\bzlib.h(70): note: 'BZ_EXPORT' previously declared on the command line
+decompress.c
+C:\Users\Zaza4\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bzip2-sys-0.1.11+1.0.8\bzip2-1.0.8\bzlib.h(70): warning C4005: 'BZ_EXPORT': macro redefinition
+C:\Users\Zaza4\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bzip2-sys-0.1.11+1.0.8\bzip2-1.0.8\bzlib.h(70): note: 'BZ_EXPORT' previously declared on the command line
+bzlib.c
+C:\Users\Zaza4\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bzip2-sys-0.1.11+1.0.8\bzip2-1.0.8\bzlib.h(70): warning C4005: 'BZ_EXPORT': macro redefinition
+C:\Users\Zaza4\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bzip2-sys-0.1.11+1.0.8\bzip2-1.0.8\bzlib.h(70): note: 'BZ_EXPORT' previously declared on the command line
+exit code: 0
+exit code: 0
+exit code: 0
+exit code: 0
+exit code: 0
+exit code: 0
+exit code: 0
+cargo:rerun-if-env-changed=AR_x86_64-pc-windows-msvc
+AR_x86_64-pc-windows-msvc = None
+cargo:rerun-if-env-changed=AR_x86_64_pc_windows_msvc
+AR_x86_64_pc_windows_msvc = None
+cargo:rerun-if-env-changed=HOST_AR
+HOST_AR = None
+cargo:rerun-if-env-changed=AR
+AR = None
+cargo:rerun-if-env-changed=ARFLAGS_x86_64-pc-windows-msvc
+ARFLAGS_x86_64-pc-windows-msvc = None
+cargo:rerun-if-env-changed=ARFLAGS_x86_64_pc_windows_msvc
+ARFLAGS_x86_64_pc_windows_msvc = None
+cargo:rerun-if-env-changed=HOST_ARFLAGS
+HOST_ARFLAGS = None
+cargo:rerun-if-env-changed=ARFLAGS
+ARFLAGS = None
+cargo:rustc-link-search=native=C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\atlmfc\lib\x64
+cargo:rustc-link-lib=static=bz2
+cargo:rustc-link-search=native=D:\_Github_Reps\UnrealAssetBot\youtube_downloader\target\debug\build\bzip2-sys-135ac18587f277c2\out\lib
+cargo:root=D:\_Github_Reps\UnrealAssetBot\youtube_downloader\target\debug\build\bzip2-sys-135ac18587f277c2\out
+cargo:include=D:\_Github_Reps\UnrealAssetBot\youtube_downloader\target\debug\build\bzip2-sys-135ac18587f277c2\out\include

@@ -2,12 +2,12 @@ import discord
 from discord import app_commands
 from utils import is_admin, get_unreal_engine_assets, load_channel_id, save_channel_id, delete_channel_id
 from datetime import datetime, timedelta, timezone
-import yt_dlp as youtube_dl
 from config import FFMPEG_Path, DropBox_Access_Token
 import dropbox
 import asyncio
 import os
 import re
+from youtube_downloader import download_youtube_video
 
 class FormatSelect(discord.ui.Select):
     def __init__(self, url):
@@ -23,44 +23,29 @@ class FormatSelect(discord.ui.Select):
         await interaction.response.send_message('Downloading video...', ephemeral=True)
 
         try:
-            ydl_opts = {
-                'format': 'bestvideo[height<=1080]+bestaudio/best' if format == 'mp4' else 'bestaudio/best',
-                'outtmpl': 'downloads/%(title)s.%(ext)s',
-                'postprocessors': [{
-                    'key': 'FFmpegVideoConvertor',
-                    'preferedformat': 'mp4',
-                }] if format == 'mp4' else [{
-                    'key': 'FFmpegExtractAudio',
-                    'preferredcodec': 'mp3',
-                    'preferredquality': '192',
-                }],
-                'ffmpeg_location': FFMPEG_Path
-            }
+            title = "downloaded_video"
+            ext = 'mp3' if format == 'mp3' else 'mp4'
+            file_path = f'downloads/{title}.{ext}'
 
-            with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-                info_dict = ydl.extract_info(self.url, download=True)
-                title = info_dict.get('title', None)
-                # Remove invalid characters from the title
-                title = re.sub(r'[\\/*?:"<>|]', "", title)
-                ext = 'mp3' if format == 'mp3' else 'mp4'
-                file_path = f'downloads/{title}.{ext}'
+            # Call the Rust function to download the video
+            download_youtube_video(self.url, format, file_path)
 
-                # Upload the file to Dropbox
-                dbx = dropbox.Dropbox(DropBox_Access_Token)
-                with open(file_path, "rb") as f:
-                    dbx.files_upload(f.read(), f'/{title}.{ext}', mute=True)
-                shared_link_metadata = dbx.sharing_create_shared_link_with_settings(f'/{title}.{ext}')
-                dropbox_link = shared_link_metadata.url.replace("?dl=0", "?dl=1")
+            # Upload the file to Dropbox
+            dbx = dropbox.Dropbox(DropBox_Access_Token)
+            with open(file_path, "rb") as f:
+                dbx.files_upload(f.read(), f'/{title}.{ext}', mute=True)
+            shared_link_metadata = dbx.sharing_create_shared_link_with_settings(f'/{title}.{ext}')
+            dropbox_link = shared_link_metadata.url.replace("?dl=0", "?dl=1")
 
-                await interaction.followup.send(f'Video downloaded successfully: {title}.{ext}', ephemeral=True)
-                await interaction.followup.send(f'You have 2 minutes to download your video.\nDownload link: [{title}]({dropbox_link})', ephemeral=True)
+            await interaction.followup.send(f'Video downloaded successfully: {title}.{ext}', ephemeral=True)
+            await interaction.followup.send(f'Download link: {dropbox_link}', ephemeral=True)
 
-                # Delete the file after uploading
-                os.remove(file_path)
+            # Delete the file after uploading
+            os.remove(file_path)
 
-                # Wait for 2 minutes before deleting the file from Dropbox
-                await asyncio.sleep(120)
-                dbx.files_delete_v2(f'/{title}.{ext}')
+            # Wait for 10 minutes before deleting the file from Dropbox
+            await asyncio.sleep(600)
+            dbx.files_delete_v2(f'/{title}.{ext}')
         except Exception as e:
             await interaction.followup.send(f'Error downloading video: {e}', ephemeral=True)
 
