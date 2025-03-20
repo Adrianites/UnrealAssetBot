@@ -1,5 +1,9 @@
 # Unreal Assets Bot
 
+# THIS DISCORD BOT HAS BEEN ARCHIVED AND NOT WORKING EVER SINCE EPIC GAMES CHANGED THEIR STORE TO FAB
+
+---
+
  This is a discord bot that was created to track the "Free for the Month" assets on the Epic Marketplace.
 
 For this bot you will need a chromedriver for it to access the website.
